@@ -1,0 +1,87 @@
+{
+    "exporters": {
+        "LocalFileStorage": {
+            "ENABLED" : true,
+            "FILE_PATH": "/tmp/malpipe"
+        },
+        "JSONLog": {
+            "ENABLED" : true,
+            "PRETTY" : true,
+            "LOG_PATH": "./temp/"
+        },
+        "GenericWebStorage": {
+            "ENABLED" : false,
+            "URL_PATH": "<http://SERVER URL PATH>"
+        },
+        "DetailsPrinter": {
+            "ENABLED" : true,
+            "STATS_ONLY" : false
+        }
+    },
+    "feeds": {
+        "VirusTotal": {
+            "ENABLED" : false,
+            "DOWNLOAD" : false,
+            "API_KEY": "<API_KEY>",
+            "EXPORTERS" :  ["DetailsPrinter", "JSONLog"],
+            "PROCESSORS" :  ["File"]
+        },
+        "MalShare": {
+            "ENABLED" : false,
+            "API_KEY" : "<API_KEY>",
+            "EXPORTERS" :  ["DetailsPrinter", "JSONLog"],
+            "PROCESSORS" :  ["YaraScan", "DNSResolver"]
+        },
+        "FeodoBlockList": {
+            "ENABLED" : true,
+            "EXPORTERS" :  ["JSONLog"],
+            "PROCESSORS" :  ["ASNLookup", "RDNS", "DNSResolver"]
+        },
+        "BambenekFeeds": {
+            "ENABLED" : true,
+            "EXPORTERS" :  ["JSONLog"],
+            "PROCESSORS" :  ["DNSResolver"]
+        },
+         "Malc0deIPList": {
+            "ENABLED" : true,
+            "EXPORTERS" :  ["JSONLog"],
+            "PROCESSORS" :  ["ASNLookup"]
+        },
+         "OpenPhishURLs": {
+            "ENABLED" : true,
+            "EXPORTERS" :  ["JSONLog"],
+            "PROCESSORS" :  ["ASNLookup", "RDNS", "DNSResolver"]
+        },
+         "NoThinkIPFeeds": {
+            "ENABLED" : true,
+            "EXPORTERS" :  ["JSONLog"],
+            "PROCESSORS" :  ["ASNLookup", "RDNS"]
+        },
+        "TorNodes": {
+            "ENABLED" : true,
+            "EXPORTERS" :  ["JSONLog"],
+            "PROCESSORS" :  ["RDNS"]
+
+        }
+    },
+    "processors": {
+        "YaraScan": {
+            "ENABLED" : false,
+            "RULES_PATH": "<YARA RULES PATH>"
+        },
+        "ASNLookup": {
+            "ENABLED" : true
+        },
+        "DNSResolver": {
+            "ENABLED" : true,
+            "nameservers" : ["8.8.8.8", "8.8.4.4", "1.1.1.1"]
+        },
+        "RDNS": {
+            "ENABLED" : true
+        },
+        "FileType": {
+            "ENABLED" : false,
+            "FILE_PATH": "<FILE EXECUTABLE PATH>"
+        }
+    }
+}
