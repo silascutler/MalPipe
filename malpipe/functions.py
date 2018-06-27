@@ -1,7 +1,7 @@
 #!/usr/bin/env python
-#Description     : Core / Shared functions used by Malpipe
-#Author          : Silas Cutler (Silas.Cutler@BlackListThisDomain.com)
-#Date            : 2017 12 27
+#Description	 : Core / Shared functions used by Malpipe
+#Author		  : Silas Cutler (Silas.Cutler@BlackListThisDomain.com)
+#Date			: 2017 12 27
 #==============================================================================
 
 import schedule
@@ -10,17 +10,6 @@ import objects
 
 # Starts daemon feeds and schedules ones to run at 
 # later times
-def SetupFeeds(feedList):
-	for name, handle in feedList:
-		interval = handle.getInterval()
-		if interval == None and handle.active == False:
-				handle.setDaemon(True)
-				handle.start()
-		else:
-			try:
-				interval.do( handle.start )
-			except Exception,e:
-				print "[X] Problem starting %s feed: %s" % ( name, e)
 
 #Main program runner
 def run():
@@ -35,10 +24,13 @@ def run():
 
 	print "\nStarting..."
 
-	SetupFeeds( feeds )
+	feeds.start()
 
 	while True:
-		schedule.run_pending()
+		try:
+			schedule.run_pending()
+		except Exception, e:
+			print "Excepion running pending: %s" % (e)
 		time.sleep(10)
 
 

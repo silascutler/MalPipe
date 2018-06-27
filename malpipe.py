@@ -5,7 +5,7 @@
 
 import malpipe
 
-version = 0.1
+version = 0.2
 banner = """
               _   ___ _            
   /\/\   __ _| | / _ (_)_ __   ___ 
