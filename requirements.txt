@@ -1,5 +1,5 @@
 cymruwhois==1.6
 schedule==0.5.0
-requests==2.12.5
+requests==2.20.0
 dnspython==1.15.0
 yara==1.7.7
